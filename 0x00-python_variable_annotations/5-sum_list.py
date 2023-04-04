@@ -4,8 +4,9 @@
 """
 
 
-def sum_list(input_list: list[float]) -> float:
-    sum: float = 0
-    for x in input_list:
-        sum += x
-    return sum
+from typing import List
+
+
+def sum_list(input_list: List[float]) -> float:
+    """returns their sum as a float."""
+    return sum(input_list)
