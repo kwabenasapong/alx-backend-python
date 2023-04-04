@@ -10,4 +10,6 @@ mxd = Union[int, float]
 
 
 def to_kv(k: str, v: mxd) -> Tuple[str, float]:
+    """returns the tuple(str, float)
+    """
     return (k, v**2)
