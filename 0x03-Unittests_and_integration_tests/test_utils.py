@@ -1,28 +1,11 @@
 #!/usr/bin/env python3
 '''
-n this task you will write the first unit test for
-utils.access_nested_map.
-
-Create a TestAccessNestedMap class that
-inherits from unittest.TestCase.
-
-Implement the TestAccessNestedMap.test_access_nested_map
-method to test that the method returns what it is supposed to.
-
-Decorate the method with @parameterized.expand to test
-the function for following inputs:
-
-nested_map={"a": 1}, path=("a",)
-nested_map={"a": {"b": 2}}, path=("a",)
-nested_map={"a": {"b": 2}}, path=("a", "b")
-For each of these inputs, test with assertEqual
-that the function returns the expected result.
-
-The body of the test method should not be longer than 2 lines.
+tasks
 '''
 import unittest
 from parameterized import parameterized
 from utils import access_nested_map
+from unittest.mock import patch
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -41,8 +24,8 @@ class TestAccessNestedMap(unittest.TestCase):
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
     @parameterized.expand([
-      ({}, ("a",)),
-      ({"a": 1}, ("a", "b"))
+        ({}, ("a",)),
+        ({"a": 1}, ("a", "b"))
     ])
     def test_access_nested_map_exception(self, nested_dict, path):
         '''
@@ -50,3 +33,18 @@ class TestAccessNestedMap(unittest.TestCase):
         '''
         with self.assertRaises(KeyError):
             access_nested_map(nested_dict, path)
+
+
+class TestGetJson(unittest.TestCase):
+    '''TestGetJson class'''
+    @patch('utils.requests.get')
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
+    def test_get_json(self, test_url, test_payload, mock_get):
+        '''test_get_json method'''
+        mock_get.return_value = Mock(json=lambda: test_payload)
+        response = get_json(test_url)
+        mock_get.assert_called_once_with(test_url)
+        self.assertEqual(response, test_payload)
