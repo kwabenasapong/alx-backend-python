@@ -93,65 +93,102 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         tearDownClass method
         '''
         cls.get_patcher.stop()
-        
+
     def test_public_repos(self):
         '''
         test_public_repos method
         '''
         test_class = GithubOrgClient('test')
         self.assertEqual(test_class.org, TEST_PAYLOAD)
-        self.assertEqual(test_class.public_repos_url, TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos_url,
+                         TEST_PAYLOAD['repos_url'])
         self.assertEqual(test_class.public_repos(), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos()[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos()[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos()[0]['license']['key'], TEST_PAYLOAD['license']['key'])
-        
+        self.assertEqual(test_class.public_repos()[
+                         0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos()[
+                         0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos()[
+                         0]['license']['key'], TEST_PAYLOAD['license']['key'])
+
     def test_public_repos_with_license(self):
         '''
         test_public_repos_with_license method
         '''
         test_class = GithubOrgClient('test')
         self.assertEqual(test_class.org, TEST_PAYLOAD)
-        self.assertEqual(test_class.public_repos_url, TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos_url,
+                         TEST_PAYLOAD['repos_url'])
 
-        self.assertEqual(test_class.public_repos('apache-2.0'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('apache-2.0')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('apache-2.0')[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos('apache-2.0')[0]['license']['key'], TEST_PAYLOAD['license']['key'])
+        self.assertEqual(test_class.public_repos(
+            'apache-2.0'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('apache-2.0')
+                         [0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('apache-2.0')
+                         [0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos('apache-2.0')
+                         [0]['license']['key'], TEST_PAYLOAD['license']['key'])
 
-        self.assertEqual(test_class.public_repos('bsd'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('bsd')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('bsd')[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos('bsd')[0]['license']['key'], TEST_PAYLOAD['license']['key'])
+        self.assertEqual(test_class.public_repos(
+            'bsd'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('bsd')[
+                         0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('bsd')[
+                         0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos('bsd')[
+                         0]['license']['key'], TEST_PAYLOAD['license']['key'])
 
-        self.assertEqual(test_class.public_repos('gnu'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('gnu')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('gnu')[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos('gnu')[0]['license']['key'], TEST_PAYLOAD['license']['key'])
+        self.assertEqual(test_class.public_repos(
+            'gnu'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('gnu')[
+                         0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('gnu')[
+                         0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos('gnu')[
+                         0]['license']['key'], TEST_PAYLOAD['license']['key'])
 
-        self.assertEqual(test_class.public_repos('mit'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('mit')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('mit')[0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos(
+            'mit'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('mit')[
+                         0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('mit')[
+                         0]['license'], TEST_PAYLOAD['license'])
 
-        self.assertEqual(test_class.public_repos('my_license'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('my_license')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('my_license')[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos('my_license')[0]['license']['key'], TEST_PAYLOAD['license']['key'])
+        self.assertEqual(test_class.public_repos(
+            'my_license'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('my_license')
+                         [0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('my_license')[
+                         0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos('my_license')[
+                         0]['license']['key'], TEST_PAYLOAD['license']['key'])
 
-        self.assertEqual(test_class.public_repos('other_license'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('other_license')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('other_license')[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos('other_license')[0]['license']['key'], TEST_PAYLOAD['license']['key'])
+        self.assertEqual(test_class.public_repos(
+            'other_license'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('other_license')[
+                         0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('other_license')[
+                         0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos('other_license')[
+                         0]['license']['key'], TEST_PAYLOAD['license']['key'])
 
-        self.assertEqual(test_class.public_repos('proprietary'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('proprietary')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('proprietary')[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos('proprietary')[0]['license']['key'], TEST_PAYLOAD['license']['key'])
+        self.assertEqual(test_class.public_repos(
+            'proprietary'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('proprietary')[
+                         0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('proprietary')[
+                         0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos('proprietary')[
+                         0]['license']['key'], TEST_PAYLOAD['license']['key'])
 
-        self.assertEqual(test_class.public_repos('wtfpl'), TEST_PAYLOAD['repos_url'])
-        self.assertEqual(test_class.public_repos('wtfpl')[0]['name'], TEST_PAYLOAD['name'])
-        self.assertEqual(test_class.public_repos('wtfpl')[0]['license'], TEST_PAYLOAD['license'])
-        self.assertEqual(test_class.public_repos('wtfpl')[0]['license']['key'], TEST_PAYLOAD['license']['key'])
+        self.assertEqual(test_class.public_repos(
+            'wtfpl'), TEST_PAYLOAD['repos_url'])
+        self.assertEqual(test_class.public_repos('wtfpl')[
+                         0]['name'], TEST_PAYLOAD['name'])
+        self.assertEqual(test_class.public_repos('wtfpl')[
+                         0]['license'], TEST_PAYLOAD['license'])
+        self.assertEqual(test_class.public_repos('wtfpl')[
+                         0]['license']['key'], TEST_PAYLOAD['license']['key'])
+
 
 if __name__ == '__main__':
     unittest.main()
