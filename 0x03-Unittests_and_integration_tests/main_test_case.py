@@ -4,7 +4,8 @@
 
 from test_utils import (
     TestAccessNestedMap,
-    TestGetJson
+    TestGetJson,
+    TestMemoize
 )
 
 
